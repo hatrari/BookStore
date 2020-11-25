@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductService.Persistence;
+using ProductService.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProductService
 {
@@ -26,6 +28,7 @@ namespace ProductService
         {
             services.AddControllersWithViews();
             services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddDbContext<ProductContext>(opt => opt.UseInMemoryDatabase("products"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
